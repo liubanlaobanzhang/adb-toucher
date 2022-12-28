@@ -1,4 +1,4 @@
-#设备适用：手势操作
+#设备适用：HarmonyOS-手势操作
 import os
 import random
 import time
