@@ -3,7 +3,7 @@ import os
 import random
 import time
 print('——————————————————————————————————————————')
-print('刷码 Ver1.0(debug2,@2022.12.27)')
+print('刷码 Ver1.0(debug2,@2022.12.27@MIUI)')
 
 for q in range(1,3):#检查设备列表
     print('——————————————————————————————————————————')
@@ -20,10 +20,15 @@ a=int(input('重复次数？'))+1
 if a>10 :
     randomcheck1=round(random.randint(1,a),0)
     print('将在第',randomcheck1-1,'次暂停检查。')
-if a>30:
+    if a>30:
         aavg=int(round(a/3,0))
-        randomcheck2=round(random.randint(1,aavg),0)
-        randomcheck3=round(random.randint(1,2*aavg),0)
+        t1=int(round(aavg/6,0))
+        t2=int(round(aavg/3,0))
+        randomcheckadd=round(random.randint(t1,t2),0)
+        ar1=randomcheck1+randomcheckadd
+        ar2=randomcheck1+2*randomcheckadd
+        randomcheck2=int(round(ar1,0))
+        randomcheck3=int(round(ar2,0))
         print('将在第',randomcheck1-1,randomcheck2-1,'和',randomcheck3-1,'次暂停检查。')
 askcheckon=int(input('你需要将二维码重新保存一份并置于第一个照片位，并确保手机电量大于40%。确认按0：'))
 # 后门：按1取消设备检查

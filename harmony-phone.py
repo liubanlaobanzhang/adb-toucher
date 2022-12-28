@@ -1,9 +1,9 @@
-#设备适用：HarmonyOS-手势操作
+#设备适用：HarmonyOS 手机-手势操作
 import os
 import random
 import time
 print('——————————————————————————————————————————')
-print('刷码 Ver1.0(debug2,@2022.12.27)')
+print('刷码 Ver1.0[debug2,@2022.12.27@Harmony OS(Phone)]')
 
 for q in range(1,3):#检查设备列表
     print('——————————————————————————————————————————')
@@ -34,7 +34,7 @@ for i in range(1,a):
     print('循环',i,'准备……')
     time.sleep(1)
     if askcheckon!=1:
-        if a>10: #检查设备状态，防止跳转小豆乐园
+        if a>10: # 检查设备状态，防止跳转小豆乐园
             if i==randomcheck1:
                 input('检查设备状态！')
             if a>20:
