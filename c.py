@@ -26,6 +26,7 @@ if a>30:
         randomcheck3=round(random.randint(1,2*aavg),0)
         print('将在第',randomcheck1-1,randomcheck2-1,'和',randomcheck3-1,'次暂停检查。')
 askcheckon=int(input('你需要将二维码重新保存一份并置于第一个照片位，并确保手机电量大于40%。确认按0：'))
+# 后门：按1取消设备检查
 
 start=time.perf_counter() #开始计时
 print('——————————————————————————————————————————')
