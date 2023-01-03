@@ -3,7 +3,7 @@ import os
 import time
 
 print('——————————————————————————————————————————')
-print('刷码 Ver1.0[debug3,@2022.12.30@Harmony OS(Phone)]')
+print('刷码[1.0.2301@2023/1/3@Harmony OS(Phone)]')
 
 for q in range(1,114514):#检查设备列表
     print('——————————————————————————————————————————')
@@ -29,11 +29,13 @@ for i in range(1,a):
 
     si=1
     print('循环',i,'/',a-1,'▓'*si*10,'-'*(50-si*10),si*20,'%')
+    print('请注意下方的log，如果存在输出，请按下“Ctrl+C”退出应用并检查设备连接情况。')
     os.system('adb shell input tap 850 650') # 点击“扫一扫”
     os.system('cls')
 
     si=2
     print('循环',i,'/',a-1,'▓'*si*10,'-'*(50-si*10),si*20,'%')
+    print('请注意下方的log，如果存在输出，请按下“Ctrl+C”退出应用并检查设备连接情况。')
     time.sleep(0.5)
     os.system('adb shell input tap 920 200') # 呼出照片库（在右上角）
     time.sleep(0.75)
@@ -44,11 +46,13 @@ for i in range(1,a):
 
     si=3
     print('循环',i,'/',a-1,'▓'*si*10,'-'*(50-si*10),si*20,'%')
+    print('请注意下方的log，如果存在输出，请按下“Ctrl+C”退出应用并检查设备连接情况。')
     time.sleep(4)
     os.system('cls')
 
     si=4
     print('循环',i,'/',a-1,'▓'*si*10,'-'*(50-si*10),si*20,'%')
+    print('请注意下方的log，如果存在输出，请按下“Ctrl+C”退出应用并检查设备连接情况。')
     os.system('adb shell input swipe 0 1450 150 1450 100')
     os.system('adb shell input swipe 0 1450 150 1450 100')
     os.system('cls')
@@ -57,6 +61,7 @@ for i in range(1,a):
     btime=time.perf_counter() # 结束计时-循环
     cycltime=round(btime-atime,3)
     print('循环',i,'/',a-1,'▓'*si*10,'-'*(50-si*10),si*20,'%')
+    print('请注意下方的log，如果存在输出，请按下“Ctrl+C”退出应用并检查设备连接情况。')
     os.system('adb shell input tap 685 1370') # 关闭由于跳转失败导致的退出确认窗口
     time.sleep(0.5)
     os.system('cls')
@@ -66,5 +71,4 @@ time=round(stop-start,3) # 计算时间
 avgtime=round(time/i,1)-1.5  # 计算平均时间
 
 os.system('cls')
-print('-----——————————————————————————————————————————-----')
 print('任务结束！已经循环',i,'次，用时',time,'秒,平均每次',avgtime,'秒')
