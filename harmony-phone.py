@@ -28,12 +28,12 @@ for i in range(1,a):
     os.system('cls')
 
     si=1
-    print('循环',i,'▓'*si*10,'-'*(50-si*10),si*20,'%')
+    print('循环',i,'/',a-1,'▓'*si*10,'-'*(50-si*10),si*20,'%')
     os.system('adb shell input tap 850 650') # 点击“扫一扫”
     os.system('cls')
 
     si=2
-    print('循环',i,'▓'*si*10,'-'*(50-si*10),si*20,'%')
+    print('循环',i,'/',a-1,'▓'*si*10,'-'*(50-si*10),si*20,'%')
     time.sleep(0.5)
     os.system('adb shell input tap 920 200') # 呼出照片库（在右上角）
     time.sleep(0.75)
@@ -43,12 +43,12 @@ for i in range(1,a):
     os.system('cls')
 
     si=3
-    print('循环',i,'▓'*si*10,'-'*(50-si*10),si*20,'%')
+    print('循环',i,'/',a-1,'▓'*si*10,'-'*(50-si*10),si*20,'%')
     time.sleep(4)
     os.system('cls')
 
     si=4
-    print('循环',i,'▓'*si*10,'-'*(50-si*10),si*20,'%')
+    print('循环',i,'/',a-1,'▓'*si*10,'-'*(50-si*10),si*20,'%')
     os.system('adb shell input swipe 0 1450 150 1450 100')
     os.system('adb shell input swipe 0 1450 150 1450 100')
     os.system('cls')
@@ -56,7 +56,7 @@ for i in range(1,a):
     si=5
     btime=time.perf_counter() # 结束计时-循环
     cycltime=round(btime-atime,3)
-    print('循环',i,'▓'*si*10,'-'*(50-si*10),si*20,'%')
+    print('循环',i,'/',a-1,'▓'*si*10,'-'*(50-si*10),si*20,'%')
     os.system('adb shell input tap 685 1370') # 关闭由于跳转失败导致的退出确认窗口
     time.sleep(0.5)
     os.system('cls')
