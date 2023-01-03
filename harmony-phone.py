@@ -24,35 +24,47 @@ start=time.perf_counter() #开始计时
 print('——————————————————————————————————————————')
 print('进程已开始。预计需要',(a-1)*7.5,'秒。')
 for i in range(1,a):
-    print('循环',i,'准备……0.5')
-    time.sleep(0.5)
-    print('循环',i,'开始')
-
     atime=time.perf_counter() #开始计时-循环
-    print('===============================')
-    print('循环',i,'，模拟操作1')
+    os.system('cls')
+
+    si=1
+    print('循环',i,'▓'*si*10,'-'*(50-si*10),si*20,'%')
     os.system('adb shell input tap 850 650') # 点击“扫一扫”
-    time.sleep(0.6)
-    print('循环',i,'，模拟操作2：选择照片')
-    os.system('adb shell input tap 920 200') # 呼出照片库（在右上角）
+    os.system('cls')
+
+    si=2
+    print('循环',i,'▓'*si*10,'-'*(50-si*10),si*20,'%')
     time.sleep(0.5)
+    os.system('adb shell input tap 920 200') # 呼出照片库（在右上角）
+    time.sleep(0.75)
     os.system('adb shell input tap 150 400') # 选择照片
     time.sleep(0.1)
     os.system('adb shell input tap 975 140') # 确认照片
-    print('循环',i,'：等待页面……')
+    os.system('cls')
+
+    si=3
+    print('循环',i,'▓'*si*10,'-'*(50-si*10),si*20,'%')
     time.sleep(4)
-    print('循环',i,'，模拟操作3：返回')
+    os.system('cls')
+
+    si=4
+    print('循环',i,'▓'*si*10,'-'*(50-si*10),si*20,'%')
     os.system('adb shell input swipe 0 1450 150 1450 100')
     os.system('adb shell input swipe 0 1450 150 1450 100')
-    btime=time.perf_counter() # 开始计时-循环
+    os.system('cls')
+
+    si=5
+    btime=time.perf_counter() # 结束计时-循环
     cycltime=round(btime-atime,3)
-    print('操作循环',i,'：完成，用时',cycltime,'秒')
-    print('===============================')
+    print('循环',i,'▓'*si*10,'-'*(50-si*10),si*20,'%')
     os.system('adb shell input tap 685 1370') # 关闭由于跳转失败导致的退出确认窗口
+    time.sleep(0.5)
+    os.system('cls')
 
 stop=time.perf_counter() # 结束计时
 time=round(stop-start,3) # 计算时间
 avgtime=round(time/i,1)-1.5  # 计算平均时间
-print('-----——————————————————————————————————————————-----')
 
+os.system('cls')
+print('-----——————————————————————————————————————————-----')
 print('任务结束！已经循环',i,'次，用时',time,'秒,平均每次',avgtime,'秒')
