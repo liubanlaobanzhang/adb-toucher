@@ -1,13 +1,8 @@
 # 设备适用：HarmonyOS 平板-手势操作
 import os
-import random
 import time
-qrcode=input('重新导入？')
-if qrcode==1:
-    os.system('adb shell rm /sdcard/Pictures/qrcode.jpg')
-    os.system('adb push qrcode.jpg /sdcard/Pictures')
 print('——————————————————————————————————————————')
-print('刷码 Ver1.0[debug3,@2022.12.28@Harmony OS(Pads)]')
+print('刷码 Ver1.0[debug3@2022.12.28@Harmony OS(Pads)]')
 
 for q in range(1,3):#检查设备列表
     print('——————————————————————————————————————————')
@@ -21,14 +16,6 @@ for q in range(1,3):#检查设备列表
         break
 
 a=int(input('重复次数？'))+1
-if a>10 :
-    randomcheck1=round(random.randint(1,a),0)
-    print('将在第',randomcheck1-1,'次暂停检查。')
-if a>30:
-        aavg=int(round(a/3,0))
-        randomcheck2=round(random.randint(1,aavg),0)
-        randomcheck3=round(random.randint(1,2*aavg),0)
-        print('将在第',randomcheck1-1,randomcheck2-1,'和',randomcheck3-1,'次暂停检查。')
 askcheckon=int(input('你需要将二维码重新保存一份并置于第一个照片位，并确保手机电量大于40%。确认按0；跳过检查按1：'))
 r=0
 
@@ -37,16 +24,7 @@ print('————————————————————————�
 
 for i in range(1,a):
     print('循环',i,'准备……')
-    time.sleep(1)
-    if askcheckon!=1:
-        if a>10: # 检查设备状态，防止跳转小豆乐园
-            if i==randomcheck1:
-                input('检查设备状态！')
-            if a>20:
-                if i==randomcheck2:
-                    input('检查设备状态！')
-                if i==randomcheck3:
-                    input('检查设备状态！')
+    time.sleep(0.5)
     r=r+1
     atime=time.perf_counter() #开始计时-循环
     print('循环',r,'，模拟操作1')

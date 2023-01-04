@@ -1,5 +1,6 @@
 # 设备适用：HarmonyOS 手机-手势操作
 import os
+import tqdm
 import time
 
 print('——————————————————————————————————————————')
