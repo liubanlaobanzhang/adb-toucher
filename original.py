@@ -1,11 +1,6 @@
 import os
-import random
 import time
 a=int(input('重复次数？'))+1
-randomcheck1=random.randint(1,a)
-randomcheck2=random.randint(1,a)
-if randomcheck2==randomcheck1 :
-    randomcheck2=randomcheck2-7
 start=time.perf_counter()
 for i in range(1,a):
     time.sleep(1)
