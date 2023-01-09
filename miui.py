@@ -1,6 +1,5 @@
 # 设备适用：MIUI13-按键操作
 import os
-import random
 import time
 print('—————————————————————————————————————————————————')
 print('刷码 Ver1.0(debug2,@2022.12.27@MIUI)')
@@ -17,36 +16,13 @@ for q in range(1,3):#检查设备列表
         break
 
 a=int(input('重复次数？'))+1
-if a>10 :
-    randomcheck1=round(random.randint(1,a),0)
-    print('将在第',randomcheck1-1,'次暂停检查。')
-    if a>30:
-        aavg=int(round(a/3,0))
-        t1=int(round(aavg/6,0))
-        t2=int(round(aavg/3,0))
-        randomcheckadd=round(random.randint(t1,t2),0)
-        ar1=randomcheck1+randomcheckadd
-        ar2=randomcheck1+2*randomcheckadd
-        randomcheck2=int(round(ar1,0))
-        randomcheck3=int(round(ar2,0))
-        print('将在第',randomcheck1-1,randomcheck2-1,'和',randomcheck3-1,'次暂停检查。')
 askcheckon=int(input('你需要将二维码重新保存一份并置于第一个照片位，并确保手机电量大于40%。确认按0：'))
-# 后门：按1取消设备检查
 
 start=time.perf_counter() #开始计时
 print('—————————————————————————————————————————————————')
 for i in range(1,a):
     print('循环',i,'准备……')
     time.sleep(1)
-    if askcheckon!=1:
-        if a>10: #检查设备状态，防止跳转小豆乐园
-            if i==randomcheck1:
-                input('检查设备状态！')
-            if a>20:
-                if i==randomcheck2:
-                    input('检查设备状态！')
-                if i==randomcheck3:
-                    input('检查设备状态！')
     atime=time.perf_counter() #开始计时-循环
     print('循环',i,'，模拟操作1')
     os.system('adb shell input tap 930 680') # 点击“扫一扫”
@@ -56,12 +32,6 @@ for i in range(1,a):
     time.sleep(0.5)
     os.system('adb shell input tap 150 630') # 选择照片
     time.sleep(3.25)
-    if i==randomcheck1:
-        os.system('adb shell input swipe 850 1650 850 750 100')
-    if i==randomcheck2:
-        os.system('adb shell input swipe 850 1650 850 750 100')
-    if i==randomcheck3:
-        os.system('adb shell input swipe 850 1650 850 750 100')
     print('循环',i,'，模拟操作3：返回')
     os.system('adb shell input tap 800 2330') # 
     os.system('adb shell input tap 800 2330') # 
