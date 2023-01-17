@@ -53,8 +53,7 @@ for qwert in range(114514):
         每个循环 = progress.add_task(description="此循环", total=10)
         总进度 = progress.add_task(description="总进度", total=10*a)
 
-        for ep in range(1):
-            for batch in range(a):
+        for batch in range(a):
                 progress.reset(每个循环)
                 progress.advance(每个循环, advance=1)
                 time.sleep(0.5)

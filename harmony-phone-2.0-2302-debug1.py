@@ -48,9 +48,8 @@ for fullprogress in range(114514):
               TimeRemainingColumn(),
               TimeElapsedColumn()) as progress: # 引用官方Demo
         总进度 = progress.add_task(description="总进度", total=a*12)
-        for ep in range(1):
-            每个循环 = progress.add_task(description="此循环", total=12)
-            for batch in range(a):
+        每个循环 = progress.add_task(description="此循环", total=12)
+        for batch in range(a):
                 progress.reset(每个循环)
                 progress.advance(每个循环, advance=1)
                 time.sleep(0.5)
