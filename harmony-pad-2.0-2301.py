@@ -2,12 +2,31 @@ from rich.progress import Progress, TextColumn, BarColumn, TimeElapsedColumn, Ti
 import time
 import os
 
-
 total=0
 print('—————————————————————————————————————————————————')
-print('刷码 2.0.2301(Debug 3) [2023.1.4@Harmony OS(Pads)]')
-print('此工具正在运行在此目录：')
-os.system('echo %cd%')
+print('刷码 2.1.2302(Debug 12)')
+print('—————————————————————————————————————————————————')
+print(' Getting things ready…')
+with Progress(TextColumn("[progress.description]{task.description}"),
+              BarColumn(),
+              TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
+              TimeRemainingColumn(),
+              TimeElapsedColumn()) as progress: # 引用官方Demo
+    加载进度 = progress.add_task(description="", total=5)
+
+    loadstep=1
+    for load in range(5):
+        if load==0:
+            os.system('adb shell rm /sdcard/DCIM/Camera/qrcode.png >nul')
+        if load==1:
+            time.sleep(0.5)
+        if load==2:
+            os.system('adb push qrcode.png /sdcard/DCIM/Camera >nul')
+        if load==3:
+            time.sleep(0.5)
+        if load==4:
+            os.system('adb shell am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file:///sdcard/DCIM/Camera/qrcode.png >nul')
+        progress.advance(加载进度, advance=1)
 
 for qwert in range(114514):
     for q in range(114514):# 检查设备列表
@@ -31,48 +50,45 @@ for qwert in range(114514):
                   TimeRemainingColumn(),
                   TimeElapsedColumn()) as progress:
 
-        每个循环 = progress.add_task(description="此循环", total=13)
-        总进度 = progress.add_task(description="总进度", total=13*a)
+        每个循环 = progress.add_task(description="此循环", total=10)
+        总进度 = progress.add_task(description="总进度", total=10*a)
 
         for ep in range(1):
             for batch in range(a):
                 progress.reset(每个循环)
                 progress.advance(每个循环, advance=1)
                 time.sleep(0.5)
-                r=1
-                for step in range(13):
-                    if r==1:
+                for step in range(10):
+                    if step==0:
                         os.system('adb shell input tap 1350 900') # 点击“扫一扫”
-                    if r==2:
+                    if step==1:
                         time.sleep(0.8)
-                    if r==3:
+                    if step==2:
                         os.system('adb shell input tap 1450 210') # 呼出照片库（在右上角）
                         time.sleep(0.3)
-                    if r==4:
+                    if step==3:
                         time.sleep(0.2)
-                    if r==5:
                         os.system('adb shell input tap 150 350') # 选择照片
-                    if r==6:
                         time.sleep(0.2)
-                    if r==7:
+                    if step==4:
                         os.system('adb shell input tap 1500 150') # 确认照片
-                    if r==8:
+                        time.sleep(0.3) # 等待跳转
+                    if step==5:
                         time.sleep(0.5) # 等待跳转
-                    if r==9:
+                    if step==6:
                         time.sleep(0.5) # 等待跳转
-                    if r==10:
+                    if step==7:
                         time.sleep(0.5) # 等待跳转
-                    if r==11:
+                    if step==8:
                         time.sleep(0.5) # 等待跳转
-                    if r==12:
-                        time.sleep(0.5) # 等待跳转
-                    if r==13:
+                    if step==9:
                         os.system('adb shell input swipe 0 1450 350 1450 100') # 返回
                         os.system('adb shell input swipe 0 1450 350 1450 100') # 返回
-                    r=r+1
 
                     progress.advance(每个循环, advance=1)
                     progress.advance(总进度, advance=1)
     print('======== 完成 ========')
     total=total+a
     print('已进行',total,'次扫码行为。')
+
+os.system('echo',total,'>total.cfg')
