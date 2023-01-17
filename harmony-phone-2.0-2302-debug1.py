@@ -1,33 +1,37 @@
 from rich.progress import Progress, TextColumn, BarColumn, TimeElapsedColumn, TimeRemainingColumn
 import time
 import os
+import sys
 
+total=0
 print('—————————————————————————————————————————————————')
-print('刷码 2.0.2301(Debug 1)@2023.1.4@Harmony OS(Phone)]')
+print('正在运行在 Python',sys.version)
+print('刷码 2.0.2301(Debug 1) [2023.1.4@Harmony OS(Phone)]')
 print('此工具正在运行在此目录：')
 os.system('echo %cd%')
 
-for q in range(1,114514):# 检查设备列表
-    print('—————————————————————————————————————————————————')
-    os.system('adb devices')
-    os.system('adb shell input swipe 950 1450 950 850 100')
-    os.system('adb shell input swipe 950 850 950 1450 100')
-    print('—————————————————————————————————————————————————')
-    print('检查是否出现设备，一切正常则输入循环次数。输入0重显设备列表，留空回车以退出。')
-    a=int(input('次数：'))
-    if a!=0:
-        break
-print('如果出现异常，请按下 Ctrl+C 终止刷码进程。出现锁死情况，请在“此循环”进度条在0%~8%时按下“取消”。')
+for fullprogress in range(114514):
+    for q in range(1,114514):# 检查设备列表
+        print('—————————————————————————————————————————————————')
+        os.system('adb devices')
+        os.system('adb shell input swipe 950 1450 950 850 100')
+        os.system('adb shell input swipe 950 850 950 1450 100')
+        print('—————————————————————————————————————————————————')
+        print('检查是否出现设备，一切正常则输入循环次数。输入0重显设备列表，留空回车以退出。')
+        a=int(input('次数：'))
+        if a!=0:
+            break
+    print('如果出现异常，请按下 Ctrl+C 终止刷码进程。出现锁死情况，请在“此循环”进度条在0%~8%时按下“取消”。')
 
-with Progress(TextColumn("[progress.description]{task.description}"),
+    with Progress(TextColumn("[progress.description]{task.description}"),
               BarColumn(),
               TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
               TimeRemainingColumn(),
               TimeElapsedColumn()) as progress: # 引用官方Demo
-    总进度 = progress.add_task(description="总进度", total=a*14)
-    for ep in range(1):
-        每个循环 = progress.add_task(description="此循环", total=14)
-        for batch in range(a):
+        总进度 = progress.add_task(description="总进度", total=a*14)
+        for ep in range(1):
+            每个循环 = progress.add_task(description="此循环", total=14)
+            for batch in range(a):
                 progress.reset(每个循环)
                 progress.advance(每个循环, advance=1)
                 time.sleep(0.5)
@@ -68,4 +72,6 @@ with Progress(TextColumn("[progress.description]{task.description}"),
                     progress.advance(每个循环, advance=1)
                     progress.advance(总进度, advance=1)
                 
-print('======== 完成 ========')
+    print('======== 完成 ========')
+    total=total+a
+    print('已进行',total,'次扫码行为。')

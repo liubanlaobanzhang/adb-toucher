@@ -2,21 +2,28 @@ from rich.progress import Progress, TextColumn, BarColumn, TimeElapsedColumn, Ti
 import time
 import os
 
+
 total=0
 print('—————————————————————————————————————————————————')
-print('刷码 2.0.2301(Debug 3)@2023.1.4@Harmony OS(Pads)]')
+print('刷码 2.0.2301(Debug 3) [2023.1.4@Harmony OS(Pads)]')
+print('此工具正在运行在此目录：')
+os.system('echo %cd%')
+
 for qwert in range(114514):
     for q in range(114514):# 检查设备列表
         print('—————————————————————————————————————————————————')
         os.system('adb devices')
         os.system('adb shell input swipe 950 1450 950 850 100')
-        time.sleep(0.5)
+        time.sleep(0.3)
         os.system('adb shell input swipe 950 850 950 1450 100')
         print('—————————————————————————————————————————————————')
-        print('检查屏幕是否有所滑动，一切正常则输入重复次数。输入0重显设备列表。')
+        print('检查屏幕是否有所滑动，一切正常则输入重复次数。输入0重显设备列表，留空回车以退出。')
         a=int(input('重复次数：'))
         if a!=0:
             break
+        if q==114513:
+            print('Python: 真无聊，走了。')
+            exit()
 
     with Progress(TextColumn("[progress.description]{task.description}"),
                   BarColumn(),
@@ -49,8 +56,6 @@ for qwert in range(114514):
                         time.sleep(0.2)
                     if r==7:
                         os.system('adb shell input tap 1500 150') # 确认照片
-                    if r==8:
-                        time.sleep(0.5) # 等待跳转
                     if r==8:
                         time.sleep(0.5) # 等待跳转
                     if r==9:
