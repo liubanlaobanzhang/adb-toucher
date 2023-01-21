@@ -13,7 +13,7 @@ with Progress(TextColumn("[progress.description]{task.description}"),
               TimeRemainingColumn(),
               TimeElapsedColumn()) as progress: # 引用官方Demo
 
-    加载进度 = progress.add_task(total=9)
+    加载进度 = progress.add_task(description='',total=9)
     for load in range(-4,6,1):
             if load==-4: # 获取上次的 QRCODE 随机名
                 with open('config/name',encoding='utf-8') as fileObj1:
