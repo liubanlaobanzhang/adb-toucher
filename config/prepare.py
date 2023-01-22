@@ -10,7 +10,6 @@ print(' Getting things ready…')
 with Progress(TextColumn("[progress.description]{task.description}"),
               BarColumn(),
               TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
-              TimeRemainingColumn(),
               TimeElapsedColumn()) as progress: # 引用官方Demo
 
     加载进度 = progress.add_task(description='',total=9)
