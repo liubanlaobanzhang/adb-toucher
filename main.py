@@ -33,21 +33,31 @@ else:
 
 
 print('—————————————————————————————————————————————————————————————————————')
-print('刷码 2.0.2302(Debug 1)')
+print('刷码 2.0.2302(Debug 2)')
 print('—————————————————————————————————————————————————————————————————————')
 
 os.system('python %cd%/config/prepare.py')
 
 print('—————————————————————————————————————————————————————————————————————')
 all1=2500-int(totala)
-print('本月已运行'+ totala +'/2500 次，剩余',str(all1),'次')
+if all1<=0:
+    showall=0
+    situation='（已完成）'
+else:
+    showall=all1
+
+print('本月已运行'+ totala +'/2500 次，剩余',str(showall),'次',situation)
 
 for allcyc in range(1,114514):
     a=input('重复次数：')
-    if a=='all':
+    if a=='all' and showall != 0:
         a=all1
+    elif showall == 0:
+        a=int(input('本地月计划已完成，请指定循环次数：'))
     elif int(a)>0:
         a=int(a)
+    else:
+        print('请指定有效的数字。')
 
     with Progress(TextColumn("[progress.description]{task.description}"),
                   BarColumn(),
