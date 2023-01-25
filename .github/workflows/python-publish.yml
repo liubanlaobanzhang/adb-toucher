@@ -1,0 +1,23 @@
+name: build
+on: [pull_request, push]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.number || github.ref }}
+  cancel-in-progress: true
+  
+jobs:
+  build:
+    if: ${{ github.event_name != 'pull_request' || github.repository != github.event.pull_request.head.repo.full_name }}
+    strategy:
+      matrix:
+        os: [windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: PyInstaller Windows
+        uses: JackMcKew/pyinstaller-action-windows@v0.1.2
+      - name: capture build artifacts
+        if: ${{ runner.os == 'Windows' }}
+        uses: actions/upload-artifact@v2
+        with:
+          name: Artifacts
+          path: build/libs/
