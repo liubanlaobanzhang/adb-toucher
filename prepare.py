@@ -4,16 +4,17 @@ from rich.progress import Progress, TextColumn, BarColumn, TimeElapsedColumn, Ti
 import time
 import os
 
-os.system('adb devices >nul') # 预热adb
+def prepare():
+    os.system('adb devices >nul') # 预热adb
 
-print(' Getting things ready…')
-with Progress(TextColumn("[progress.description]{task.description}"),
+    print(' Getting things ready…')
+    with Progress(TextColumn("[progress.description]{task.description}"),
               BarColumn(),
               TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
               TimeElapsedColumn()) as progress: # 引用官方Demo
 
-    加载进度 = progress.add_task(description='',total=9)
-    for load in range(-4,6,1):
+        加载进度 = progress.add_task(description='',total=9)
+        for load in range(-4,6,1):
             if load==-4: # 获取上次的 QRCODE 随机名
                 with open('config/name',encoding='utf-8') as fileObj1:
                     for line in fileObj1:
