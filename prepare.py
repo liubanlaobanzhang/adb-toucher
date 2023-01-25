@@ -4,6 +4,10 @@ from rich.progress import Progress, TextColumn, BarColumn, TimeElapsedColumn, Ti
 import time
 import os
 
+def update():
+    print('检查更新……')
+    os.system('git pull')
+
 def prepare():
     os.system('adb devices >nul') # 预热adb
 
