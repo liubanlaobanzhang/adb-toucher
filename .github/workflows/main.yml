@@ -6,8 +6,8 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - name: PyInstaller Windows
-        uses: JackMcKew/pyinstaller-action-windows@v0.1.2
+      - name: Python Build for Windows(PyInstaller)
+        uses: vednig/pyinstaller-action-windows@v0.1.5
       - name: capture build artifacts
         uses: actions/upload-artifact@v2
         with:
