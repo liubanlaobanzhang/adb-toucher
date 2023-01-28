@@ -6,7 +6,7 @@ nova5pro="SEA-AL10"
 nova3i=0
 
 # 加载上次使用月份
-with open('config/lastusemonth',encoding='utf-8') as fileObj1:
+with open('config/lastusemonth',encoding='utf-8',mode='w') as fileObj1:
     for line in fileObj1:
         lastusemonth=line.rstrip()
 
@@ -15,7 +15,7 @@ todayusemonth=time.strftime('%m')
 
 # 判断是否跳月
 if lastusemonth.strip()==todayusemonth.strip():
-    with open('config/monthtotal',encoding='utf-8') as fileObj1:
+    with open('config/monthtotal',encoding='utf-8',mode='w') as fileObj1:
         for line in fileObj1:
             totala=line.rstrip()
 else:
