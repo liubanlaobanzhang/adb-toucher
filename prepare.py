@@ -1,8 +1,5 @@
-import base64
-import random
-from rich.progress import Progress, TextColumn, BarColumn, TimeElapsedColumn, TimeRemainingColumn
-import time
-import os
+import base64, time, os
+from rich.progress import Progress, TextColumn, BarColumn, TimeElapsedColumn
 
 def update():
     print('检查更新……')
@@ -33,7 +30,7 @@ def prepare():
             if load==-2:
                 data = src.split(',')[1]
                 image_data = base64.b64decode(data)
-                name='qrcode'+str(round(random.randint(1,1145141919810),0))+'.png'
+                name='qrcode'+str(round(time.perf_counter(),0))+'.png'
                 with open(name, 'wb') as f:
                     f.write(image_data) # 随机命名QRCODE
                     f.close()

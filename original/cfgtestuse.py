@@ -1,0 +1,2 @@
+import cfgtest
+cfgtest.readconfig()

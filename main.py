@@ -1,16 +1,9 @@
-import subprocess
+import subprocess, time, os, prepare
 from rich.progress import Progress, TextColumn, BarColumn, TimeElapsedColumn, TimeRemainingColumn
-import time
-import os
-import prepare
 
-# 设备ID
-pad="DXQBB22324201093"
-pad2='192.168.3.188:5555'
-nova5pro="6HJ4C19716015113"
-nova5pro2="192.168.3.39:5555"
-nova3i="BGX4C18826010046"
-nova3i2="192.168.3.235:5555"
+pad="DBY-W09"
+nova5pro="SEA-AL10"
+nova3i=0
 
 # 加载上次使用月份
 with open('config/lastusemonth',encoding='utf-8') as fileObj1:
@@ -49,12 +42,12 @@ else:
 
 print('本月已运行'+ totala +'/2500 次，剩余',str(showall),'次',situation)
 
-for allcyc in range(1,114514):
+while 114514!=1919810:
     a=input('重复次数：')
     if a=='all' and showall != 0:
         a=all1
     elif showall == 0:
-        a=int(input('本地月计划已完成，请指定循环次数：'))
+        a=int(input('本月计划已完成，请指定循环次数：'))
     elif int(a)>0:
         a=int(a)
     else:
@@ -71,10 +64,10 @@ for allcyc in range(1,114514):
 
 
         for aqw in range(a+2):
-            xe=subprocess.run("adb get-serialno",stdout=subprocess.PIPE) # 获取设备序列号
+            xe=subprocess.run("adb shell getprop ro.product.model",stdout=subprocess.PIPE) # 获取设备序列号
             qr=xe.stdout.decode("gbk")
             devicename=qr.strip()
-            if devicename == pad or devicename == pad2:
+            if devicename == pad:
                 progress.reset(每个循环)
                 progress.advance(每个循环, advance=1)
                 time.sleep(0.5)
@@ -107,7 +100,7 @@ for allcyc in range(1,114514):
                     progress.advance(每个循环, advance=1)
                     progress.advance(总进度, advance=1)
 
-            elif devicename == nova5pro or devicename == nova5pro2:
+            elif devicename == nova5pro:
                 progress.reset(每个循环)
                 progress.advance(每个循环, advance=1)
                 for step in range(10):
@@ -140,7 +133,7 @@ for allcyc in range(1,114514):
                     progress.advance(每个循环, advance=1)
                     progress.advance(总进度, advance=1)
             
-            elif devicename == nova3i or devicename == nova3i2:
+            elif devicename == nova3i:
                 progress.reset(每个循环)
                 progress.advance(每个循环, advance=1)
                 for step in range(10):
