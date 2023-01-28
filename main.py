@@ -177,6 +177,5 @@ while 114514!=1919810:
 print('—————————————————————————————————————————————————————————————————————')
 os.system('cls')
 print('程序正在退出……')
-os.system('del "__pycache__"')
 time.sleep(3)
 os.system('cls')
