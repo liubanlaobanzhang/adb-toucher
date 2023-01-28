@@ -40,11 +40,14 @@ if all1<=0:
 else:
     showall=all1
 
-print('本月已运行'+ totala +'/2500 次，剩余',str(showall),'次',situation)
 
 while 114514!=1919810:
+    print('本月已运行'+ totala +'/2500 次，剩余',str(showall),'次',situation)
+    print('退出程序输入：-1。')
     a=input('重复次数：')
-    if a=='all' and showall != 0:
+    if a== '-1':
+        break
+    elif a=='all' and showall != 0:
         a=all1
     elif showall == 0:
         a=int(input('本月计划已完成，请指定循环次数：'))
@@ -174,4 +177,6 @@ while 114514!=1919810:
 print('—————————————————————————————————————————————————————————————————————')
 os.system('cls')
 print('程序正在退出……')
+os.system('del "__pycache__"')
 time.sleep(3)
+os.system('cls')
