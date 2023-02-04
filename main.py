@@ -17,9 +17,9 @@ with open('config/lastusemonth',encoding='utf-8') as fileObj2:
     for line in fileObj2:
         lastusemonth=line.rstrip()
 
-# 写入本次使用月份
 todayusemonth=time.strftime('%m')
 if lastusemonth.strip() == todayusemonth.strip():
+    # 获取总数
     with open('config/monthtotal',encoding='utf-8') as fileObj3:
         for line in fileObj3:
             totala=line.rstrip()
@@ -29,7 +29,6 @@ else:
     f = open('config/lastusemonth','w') 
     f.write(todayusemonth) 
     f.close()
-
     # 运行次数写为0
     f = open('config/monthtotal','w') 
     f.write('0') 
@@ -41,7 +40,7 @@ f.write(nowtime)
 f.close()
 
 print('—————————————————————————————————————————————————————————————————————')
-print('刷码 2.0.2302(Debug 7)')
+print('刷码 2.0.2302(Debug 8)')
 # print('—————————————————————————————————————————————————————————————————————')
 # prepare.update()
 print('—————————————————————————————————————————————————————————————————————')
@@ -50,10 +49,10 @@ print('————————————————————————�
 all1=2500-int(totala)
 if all1<=0:
     showall=0
-    situation='（✅ 已完成）'
+    situation='\033[0;32m（✅ 已完成）\033[0m'
 else:
     showall=all1
-    situation='（❌ 未完成）'
+    situation='\033[1;31m（❌ 未完成）\033[0m'
 
 print('上次运行于：',lastusetime)
 while 114514!=1919810:
@@ -224,11 +223,20 @@ while 114514!=1919810:
                 f.close() 
 
     except KeyboardInterrupt:
+        exitreason='0'
+        break
+
+    except ValueError:
+        exitreason='错误：非法字符，程序崩溃。'
         break
 
 print('—————————————————————————————————————————————————————————————————————')
 os.system('cls')
-print('程序正在退出……')
+print('程序正在退出……\033[1;31m请不要拔出设备……\033[0m')
+with open('config/name',encoding='utf-8') as fileObj1:
+    for line in fileObj1:
+        pngname=line.rstrip()
+os.system('%cd%/adb/adb.exe shell rm /sdcard/DCIM/Camera/'+pngname+' >nul')
 time.sleep(3)
 os.system('cls')
 exit()
