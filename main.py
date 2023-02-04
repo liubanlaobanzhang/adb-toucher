@@ -1,5 +1,15 @@
-import subprocess, time, os, prepare
-from rich.progress import Progress, TextColumn, BarColumn, TimeElapsedColumn, TimeRemainingColumn
+try:
+        import subprocess, time, os
+        from rich.progress import Progress, TextColumn, BarColumn, TimeElapsedColumn, TimeRemainingColumn
+except ModuleNotFoundError:
+        os.system('pip install -i https://pypi.tuna.tsinghua.edu.cn/simple/ rich')
+        os.system('pip install -i https://pypi.tuna.tsinghua.edu.cn/simple/ subprocess')
+
+try:
+    import prepare
+except ModuleNotFoundError:
+    print('检查资源完整性！')
+    exit()
 
 pad="DBY-W09"
 nova5pro="SEA-AL10"
@@ -50,9 +60,11 @@ all1=2500-int(totala)
 if all1<=0:
     showall=0
     situation='\033[0;32m（✅ 已完成）\033[0m'
+    
 else:
     showall=all1
     situation='\033[1;31m（❌ 未完成）\033[0m'
+
 
 print('上次运行于：',lastusetime)
 while 114514!=1919810:
@@ -92,18 +104,18 @@ while 114514!=1919810:
                     time.sleep(0.5)
                     for step in range(10):
                         if step==0:
-                            os.system('adb -s '+devicename+' shell input tap 1350 900') # 点击“扫一扫”
+                            os.system('adb shell input tap 1350 900') # 点击“扫一扫”
                         if step==1:
                             time.sleep(0.8)
                         if step==2:
-                            os.system('adb -s '+devicename+' shell input tap 1450 210') # 呼出照片库（在右上角）
+                            os.system('adb shell input tap 1450 210') # 呼出照片库（在右上角）
                             time.sleep(0.3)
                         if step==3:
                             time.sleep(0.2)
-                            os.system('adb -s '+devicename+' shell input tap 150 350') # 选择照片
-                            time.sleep(0.2)
+                            os.system('adb shell input tap 150 350') # 选择照片
+                            time.sleep(0.1)
                         if step==4:
-                            os.system('adb -s '+devicename+' shell input tap 1500 150') # 确认照片
+                            os.system('adb shell input tap 1500 150') # 确认照片
                             time.sleep(0.3) # 等待跳转
                         if step==5:
                             time.sleep(0.5) # 等待跳转
@@ -114,8 +126,8 @@ while 114514!=1919810:
                         if step==8:
                             time.sleep(0.5) # 等待跳转
                         if step==9:
-                            os.system('adb -s '+devicename+' shell input swipe 0 1450 350 1450 100') # 返回
-                            os.system('adb -s '+devicename+' shell input swipe 0 1450 350 1450 100') # 返回
+                            os.system('adb shell input swipe 0 1450 350 1450 100') # 返回
+                            os.system('adb shell input swipe 0 1450 350 1450 100') # 返回
                         progress.advance(每个循环, advance=1)
                         progress.advance(总进度, advance=1)
 
@@ -124,18 +136,18 @@ while 114514!=1919810:
                     progress.advance(每个循环, advance=1)
                     for step in range(10):
                         if step==0:
-                            os.system('adb -s '+devicename+' shell input tap 850 650') # 点击“扫一扫”
+                            os.system('adb shell input tap 850 650') # 点击“扫一扫”
                             time.sleep(0.3)
                         if step==1:
                             time.sleep(0.5)
                         if step==2:
-                            os.system('adb -s '+devicename+' shell input tap 920 200') # 呼出照片库（在右上角）
+                            os.system('adb shell input tap 920 200') # 呼出照片库（在右上角）
                             time.sleep(0.4)
                         if step==3:
-                            os.system('adb -s '+devicename+' shell input tap 150 400') # 选择照片
+                            os.system('adb shell input tap 150 400') # 选择照片
                             time.sleep(0.3)
                         if step==4:
-                            os.system('adb -s '+devicename+' shell input tap 975 140') # 确认照片
+                            os.system('adb shell input tap 975 140') # 确认照片
                             time.sleep(0.5) # 等待跳转
                         if step==5:
                             time.sleep(0.75) # 等待跳转
@@ -145,10 +157,10 @@ while 114514!=1919810:
                             time.sleep(0.5) # 等待跳转
                         if step==8:
                             time.sleep(0.5) # 等待跳转
-                            os.system('adb -s '+devicename+' shell input swipe 0 1450 150 1450 100') # 返回
-                            os.system('adb -s '+devicename+' shell input swipe 0 1450 150 1450 100') # 返回
+                            os.system('adb shell input swipe 0 1450 150 1450 100') # 返回
+                            os.system('adb shell input swipe 0 1450 150 1450 100') # 返回
                         if step==9:
-                            os.system('adb -s '+devicename+' shell input tap 685 1370') # 关闭由于跳转失败导致的退出确认窗口
+                            os.system('adb shell input tap 685 1370') # 关闭由于跳转失败导致的退出确认窗口
                         progress.advance(每个循环, advance=1)
                         progress.advance(总进度, advance=1)
                 
@@ -157,19 +169,19 @@ while 114514!=1919810:
                     progress.advance(每个循环, advance=1)
                     for step in range(10):
                         if step==0:
-                            os.system('adb -s '+devicename+' shell input tap 850 650') # 点击“扫一扫”
+                            os.system('adb shell input tap 850 650') # 点击“扫一扫”
                             time.sleep(0.3)
                         if step==1:
                             time.sleep(0.5)
-                            os.system('adb -s '+devicename+' shell input tap 920 200') # 呼出照片库（在右上角）
+                            os.system('adb shell input tap 920 200') # 呼出照片库（在右上角）
                         if step==2:
                             time.sleep(0.4)
-                            os.system('adb -s '+devicename+' shell input tap 150 400') # 选择照片
+                            os.system('adb shell input tap 150 400') # 选择照片
                         if step==3:
                             time.sleep(0.4)
-                            os.system('adb -s '+devicename+' shell input tap 150 400') # 选择照片
+                            os.system('adb shell input tap 150 400') # 选择照片
                         if step==4:
-                            os.system('adb -s '+devicename+' shell input tap 975 140') # 确认照片
+                            os.system('adb shell input tap 975 140') # 确认照片
                             time.sleep(0.75) # 等待跳转
                         if step==5:
                             time.sleep(0.75) # 等待跳转
@@ -178,10 +190,10 @@ while 114514!=1919810:
                         if step==7:
                             time.sleep(0.75) # 等待跳转
                         if step==8:
-                            os.system('adb -s '+devicename+' shell input tap 300 2250') # 返回
-                            os.system('adb -s '+devicename+' shell input tap 300 2250') # 返回
+                            os.system('adb shell input tap 300 2250') # 返回
+                            os.system('adb shell input tap 300 2250') # 返回
                         if step==9:
-                            os.system('adb -s '+devicename+' shell input tap 685 1370') # 关闭由于跳转失败导致的退出确认窗口
+                            os.system('adb shell input tap 685 1370') # 关闭由于跳转失败导致的退出确认窗口
                         progress.advance(每个循环, advance=1)
                         progress.advance(总进度, advance=1)
 
@@ -190,18 +202,18 @@ while 114514!=1919810:
                     progress.advance(每个循环, advance=1)
                     for step in range(10):
                         if step==0:
-                            os.system('adb -s '+devicename+' shell input tap 930 650') # 点击“扫一扫”
+                            os.system('adb shell input tap 930 650') # 点击“扫一扫”
                             time.sleep(0.2)
                         if step==1:
                             time.sleep(0.5)
                         if step==2:
-                            os.system('adb -s '+devicename+' shell input tap 950 210') # 呼出照片库（在右上角）
+                            os.system('adb shell input tap 950 210') # 呼出照片库（在右上角）
                             time.sleep(0.4)
                         if step==3:
-                            os.system('adb -s '+devicename+' shell input tap 150 630') # 选择照片
+                            os.system('adb shell input tap 150 630') # 选择照片
                             time.sleep(0.4)
                         if step==4:
-                            os.system('adb -s '+devicename+' shell input tap 975 140') # 确认照片
+                            os.system('adb shell input tap 975 140') # 确认照片
                             time.sleep(0.5) # 等待跳转    
                         if step==5:
                             time.sleep(1)
@@ -210,10 +222,10 @@ while 114514!=1919810:
                         if step==7:
                             time.sleep(0.75) # 等待跳转
                         if step==8:
-                            os.system('adb -s '+devicename+' shell input tap 300 2250') # 返回
-                            os.system('adb -s '+devicename+' shell input tap 300 2250') # 返回
+                            os.system('adb shell input tap 300 2250') # 返回
+                            os.system('adb shell input tap 300 2250') # 返回
                         if step==9:
-                            os.system('adb -s '+devicename+' shell input tap 685 1370') # 关闭由于跳转失败导致的退出确认窗口
+                            os.system('adb shell input tap 685 1370') # 关闭由于跳转失败导致的退出确认窗口
                         progress.advance(每个循环, advance=1)
                         progress.advance(总进度, advance=1)
 
@@ -232,7 +244,7 @@ while 114514!=1919810:
 
 print('—————————————————————————————————————————————————————————————————————')
 os.system('cls')
-print('程序正在退出……\033[1;31m请不要拔出设备……\033[0m')
+print('程序正在退出……\n\033[1;31m⚠️请不要拔出设备！\033[0m')
 with open('config/name',encoding='utf-8') as fileObj1:
     for line in fileObj1:
         pngname=line.rstrip()
