@@ -2,20 +2,25 @@ try:
         import subprocess, time, os
         from rich.progress import Progress, TextColumn, BarColumn, TimeElapsedColumn, TimeRemainingColumn
 except ModuleNotFoundError:
+        print('正在下载必要的应用框架……')
         os.system('pip install -i https://pypi.tuna.tsinghua.edu.cn/simple/ rich')
         os.system('pip install -i https://pypi.tuna.tsinghua.edu.cn/simple/ subprocess')
+        print()
 
 try:
     import prepare
 except ModuleNotFoundError:
-    print('检查资源完整性！')
+    print('请尝试重新进行部署')
     exit()
+
+if os.path.exists('adb/adb.exe') == False:
+    print('缺失adb！')
 
 pad="DBY-W09"
 nova5pro="SEA-AL10"
 nova3i=0
 lastusetime='<Unknown>'
-mik40pro=0
+mik40pro='M2012K11C'
 
 # 加载上次使用时间
 with open('config/lastusetime',encoding='utf-8') as fileObj1:
@@ -50,7 +55,7 @@ f.write(nowtime)
 f.close()
 
 print('—————————————————————————————————————————————————————————————————————')
-print('刷码 2.0.2302(Debug 8)')
+print('刷码 2.0.2302(Debug 9)')
 # print('—————————————————————————————————————————————————————————————————————')
 # prepare.update()
 print('—————————————————————————————————————————————————————————————————————')
@@ -80,6 +85,8 @@ while 114514!=1919810:
             a=int(input('本月计划已完成，请指定循环次数：'))
         elif int(a)>0:
             a=int(a)
+        elif a.strip()=='/debug device':
+            os.system('adb.exe devices')
         else:
             print('请指定有效的数字。')
 
@@ -203,28 +210,32 @@ while 114514!=1919810:
                     for step in range(10):
                         if step==0:
                             os.system('adb shell input tap 930 650') # 点击“扫一扫”
-                            time.sleep(0.2)
+                            time.sleep(0.4)
                         if step==1:
-                            time.sleep(0.5)
-                        if step==2:
+                            time.sleep(0.3)
                             os.system('adb shell input tap 950 210') # 呼出照片库（在右上角）
-                            time.sleep(0.4)
-                        if step==3:
+                        if step==2:
+                            time.sleep(0.5)
                             os.system('adb shell input tap 150 630') # 选择照片
-                            time.sleep(0.4)
-                        if step==4:
+                            time.sleep(0.2)
+                        if step==3:
+                            time.sleep(0.2)
                             os.system('adb shell input tap 975 140') # 确认照片
-                            time.sleep(0.5) # 等待跳转    
+                            time.sleep(0.4) # 等待跳转    
+                        if step==4:
+                            time.sleep(0.55)
                         if step==5:
-                            time.sleep(1)
+                            time.sleep(0.55)
                         if step==6:
-                            time.sleep(1) # 等待跳转
+                            time.sleep(0.55) # 等待跳转
                         if step==7:
-                            time.sleep(0.75) # 等待跳转
+                            time.sleep(0.55) # 等待跳转
                         if step==8:
-                            os.system('adb shell input tap 300 2250') # 返回
-                            os.system('adb shell input tap 300 2250') # 返回
+                            time.sleep(0.5)
+                            os.system('adb shell input tap 792 2368') # 返回
+                            os.system('adb shell input tap 792 2368') # 返回
                         if step==9:
+                            time.sleep(0.2)
                             os.system('adb shell input tap 685 1370') # 关闭由于跳转失败导致的退出确认窗口
                         progress.advance(每个循环, advance=1)
                         progress.advance(总进度, advance=1)
@@ -244,11 +255,11 @@ while 114514!=1919810:
 
 print('—————————————————————————————————————————————————————————————————————')
 os.system('cls')
-print('程序正在退出……\n\033[1;31m⚠️请不要拔出设备！\033[0m')
+print('程序正在退出……\n\033[1;31m⚠️  请不要拔出设备！\033[0m')
+time.sleep(3)
 with open('config/name',encoding='utf-8') as fileObj1:
     for line in fileObj1:
         pngname=line.rstrip()
 os.system('%cd%/adb/adb.exe shell rm /sdcard/DCIM/Camera/'+pngname+' >nul')
-time.sleep(3)
 os.system('cls')
 exit()
