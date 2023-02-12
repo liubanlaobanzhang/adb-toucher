@@ -10,11 +10,9 @@ except ModuleNotFoundError:
 try:
     import prepare
 except ModuleNotFoundError:
-    print('请尝试重新进行部署')
+    print('请尝试重新进行部署。')
+    print('错误代码：2')
     exit()
-
-if os.path.exists('adb/adb.exe') == False:
-    print('缺失adb！')
 
 pad="DBY-W09"
 nova5pro="SEA-AL10"
@@ -61,19 +59,20 @@ print('刷码 2.0.2302(Debug 9)')
 print('—————————————————————————————————————————————————————————————————————')
 prepare.prepare()
 print('—————————————————————————————————————————————————————————————————————')
-all1=2500-int(totala)
-if all1<=0:
-    showall=0
-    situation='\033[0;32m（✅ 已完成）\033[0m'
-    
-else:
-    showall=all1
-    situation='\033[1;31m（❌ 未完成）\033[0m'
 
 
 print('上次运行于：',lastusetime)
 while 114514!=1919810:
     try:
+
+        all1=2500-int(totala)
+        if all1<=0:
+            showall=0
+            situation='\033[0;32m（✅ 已完成）\033[0m'
+        else:
+            showall=all1
+            situation='\033[1;31m（❌ 未完成）\033[0m'
+
         print('本月已运行', totala +'/2500 次，剩余',str(showall),'次',situation)
         print('退出程序输入：-1。')
         a=input('重复次数：')
@@ -85,8 +84,6 @@ while 114514!=1919810:
             a=int(input('本月计划已完成，请指定循环次数：'))
         elif int(a)>0:
             a=int(a)
-        elif a.strip()=='/debug device':
-            os.system('adb.exe devices')
         else:
             print('请指定有效的数字。')
 
@@ -100,7 +97,7 @@ while 114514!=1919810:
             总进度 = progress.add_task(description="总进度", total=10*a)
 
 
-            for aqw in range(a+2):
+            for aqw in range(a):
                 xe=subprocess.run("adb shell getprop ro.product.model",stdout=subprocess.PIPE) # 获取设备序列号
                 qr=xe.stdout.decode("gbk")
                 devicename=qr.strip()

@@ -28,7 +28,8 @@ def prepare():
               TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
               TimeElapsedColumn()) as progress: # 引用官方Demo
 
-        加载进度 = progress.add_task(description='',total=9)
+        加载进度 = progress.add_task(description='',total=8)
+
         for load in range(-4,6,1):
             if load==-4: # 获取上次的 QRCODE 随机名
                 with open('config/name',encoding='utf-8') as fileObj1:
@@ -56,17 +57,17 @@ def prepare():
                 f.close()
 
             if load==0:
-                os.system('adb shell rm /sdcard/DCIM/Camera/'+lastpngname+' >nul')
+                time.sleep(0.5)
 
             if load==1:
-                time.sleep(0.5)
-
-            if load==2:
                 os.system('adb push '+name+' /sdcard/DCIM/Camera >nul')
 
-            if load==3:
+            if load==2:
                 time.sleep(0.5)
-            if load==4:
+            if load==3:
                 os.system('adb shell am broadcast -a android.intent.action.MEDIA_SCANNER_SCAN_FILE -d file:///sdcard/DCIM/Camera/'+name+' >nul')
                 os.system('del '+name)
             progress.advance(加载进度, advance=1)
+
+if __name__ == "__main__":
+    print('请使用main.py……')
