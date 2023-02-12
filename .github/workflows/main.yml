@@ -1,0 +1,30 @@
+name: '自动同步 Winget-Cli 源加速'
+ 
+on: [push]
+
+jobs:
+  Build:
+    runs-on: windows-latest
+    steps:
+      - name: 'Checkout codes'
+        uses: actions/checkout@v1
+        
+      - name: Setup Python
+        uses: actions/setup-python@v4.5.0
+        with:
+          python-version: 3.9
+          
+      - name: 'Pyinstaller build'
+        run: |
+          pip install pyinstaller
+          pyinstaller -F main.py
+      
+      - name: 'Get ready for environmenr'
+        run: |
+          copy config dist\config
+          
+      - name: capture build artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: Artifacts
+          path: dist
