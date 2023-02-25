@@ -257,9 +257,10 @@ print('————————————————————————�
 os.system('cls')
 print('程序正在退出……\n\033[1;31m⚠️  请不要拔出设备！\033[0m')
 savetime=time.strftime('%Y/%m/%d %H:%M:%S')
-os.system('git commit -a -m "'+savetime+'"')
 with open('config/name',encoding='utf-8') as fileObj1:
     for line in fileObj1:
         pngname=line.rstrip()
 os.system('%cd%/adb/adb.exe shell rm /sdcard/DCIM/Camera/'+pngname+' >nul')
+os.system('git commit -a -m "'+savetime+'"')
+os.system('git push')
 os.system('cls')
