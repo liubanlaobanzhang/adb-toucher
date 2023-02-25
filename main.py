@@ -256,7 +256,8 @@ while 114514!=1919810:
 print('—————————————————————————————————————————————————————————————————————')
 os.system('cls')
 print('程序正在退出……\n\033[1;31m⚠️  请不要拔出设备！\033[0m')
-time.sleep(3)
+savetime=time.strftime('%Y/%m/%d %H:%M:%S')
+os.system('git commit -a -m "'+savetime+'"')
 with open('config/name',encoding='utf-8') as fileObj1:
     for line in fileObj1:
         pngname=line.rstrip()
