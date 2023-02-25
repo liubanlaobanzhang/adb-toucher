@@ -7,6 +7,7 @@ except ModuleNotFoundError:
         os.system('pip install -i https://pypi.tuna.tsinghua.edu.cn/simple/ subprocess')
         print()
 
+
 try:
     import prepare
 except ModuleNotFoundError:
@@ -65,6 +66,8 @@ print('上次运行于：',lastusetime)
 while 114514!=1919810:
     try:
 
+
+
         all1=2500-int(totala)
         if all1<=0:
             showall=0
@@ -92,7 +95,6 @@ while 114514!=1919810:
                     TextColumn("[progress.percentage]{task.percentage:>3.0f}%"),
                     TimeRemainingColumn(),
                     TimeElapsedColumn()) as progress:
-
             每个循环 = progress.add_task(description="此循环", total=10)
             总进度 = progress.add_task(description="总进度", total=10*a)
 
@@ -241,7 +243,8 @@ while 114514!=1919810:
                 f = open('config/monthtotal','w') 
                 f.write(totala) 
                 f.close() 
-
+            prepare.notice()
+            
     except KeyboardInterrupt:
         exitreason='0'
         break
@@ -259,4 +262,3 @@ with open('config/name',encoding='utf-8') as fileObj1:
         pngname=line.rstrip()
 os.system('%cd%/adb/adb.exe shell rm /sdcard/DCIM/Camera/'+pngname+' >nul')
 os.system('cls')
-exit()

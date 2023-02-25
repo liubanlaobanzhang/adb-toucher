@@ -2,6 +2,30 @@ import base64, time, os, random
 from rich.progress import Progress, TextColumn, BarColumn, TimeElapsedColumn
 import ctypes, sys
 
+def notice():
+    from win10toast import ToastNotifier
+    import _thread
+    """
+    win10toast 的库底层为win32api、win32con和win32gui
+    """
+
+    toaster = ToastNotifier()
+
+
+    def show_toast():
+        toaster.show_toast("已完成本次的刷码任务！",
+                        '请回到原窗口',
+                        icon_path=None,
+                        duration=5,
+                        threaded=True)
+
+
+    def send():
+        _thread.start_new_thread(show_toast, ())
+        time.sleep(0.1)
+
+    send()
+
 def redeploy():
     def is_admin():
         try:
