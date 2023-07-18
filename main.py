@@ -4,7 +4,7 @@ try:
 except ModuleNotFoundError:
         print('正在下载必要的应用框架……')
         os.system('pip install -i https://pypi.tuna.tsinghua.edu.cn/simple/ rich')
-        os.system('pip install -i https://pypi.tuna.tsinghua.edu.cn/simple/ subprocess')
+        os.system('pip install -i https://pypi.tuna.tsinghua.edu.cn/simple/ subprocess') # type: ignore
         print()
 
 
@@ -65,9 +65,6 @@ print('————————————————————————�
 print('上次运行于：',lastusetime)
 while 114514!=1919810:
     try:
-
-
-
         all1=2500-int(totala)
         if all1<=0:
             showall=0
